@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: nest-pg
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: nest-app
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
+
+  nest_app:
+    build: ./
+    container_name: nest_app
+    ports:
+      - '3333:3333'
+    volumes:
+      - ./src:/app/src
+    working_dir: /app
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://docker:docker@postgres:5432/nest-app?schema=public
+    depends_on:
+    - postgres
