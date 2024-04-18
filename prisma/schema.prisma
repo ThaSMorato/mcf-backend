@@ -12,3 +12,54 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model HealthUnit {
+  id        String @id @default(uuid())
+  name      String
+  latitude  Int
+  longitude Int
+  address   String
+
+  shifts Shift[]
+}
+
+model NurseShift {
+  id        String    @id @default(uuid())
+  approved  Boolean?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  nurse   Nurse  @relation(fields: [nurseId], references: [id])
+  nurseId String @map("nurse_id")
+
+  shift   Shift  @relation(fields: [shiftId], references: [id])
+  shiftId String @map("shift_id")
+
+  @@map("nurse_shifts")
+}
+
+model Nurse {
+  id       String @id @default(uuid())
+  name     String
+  password String
+  email    String @unique
+
+  nurseShifts NurseShift[]
+
+  @@map("nurses")
+}
+
+model Shift {
+  id          String @id @default(uuid())
+  name        String
+  description String
+  startTime   String @map("start_time")
+  endTime     String @map("end_time")
+
+  HealthUnit   HealthUnit? @relation(fields: [healthUnitId], references: [id])
+  healthUnitId String?     @map("health_unit_id")
+
+  nurseShifts NurseShift[]
+
+  @@map("shifts")
+}
