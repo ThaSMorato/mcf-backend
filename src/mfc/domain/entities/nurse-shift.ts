@@ -1,5 +1,6 @@
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
 
 interface NurseShiftProps {
   nurseId: UniqueEntityID
@@ -10,8 +11,14 @@ interface NurseShiftProps {
 }
 
 export class NurseShift extends Entity<NurseShiftProps> {
-  static create(props: NurseShiftProps, id?: UniqueEntityID) {
-    const nurseShift = new NurseShift(props, id)
+  static create(
+    props: Optional<NurseShiftProps, 'createdAt'>,
+    id?: UniqueEntityID,
+  ) {
+    const nurseShift = new NurseShift(
+      { ...props, createdAt: props.createdAt ?? new Date() },
+      id,
+    )
 
     return nurseShift
   }
