@@ -5,9 +5,9 @@ import { Optional } from '@/core/types/optional'
 interface NurseShiftProps {
   nurseId: UniqueEntityID
   shiftId: UniqueEntityID
-  approved?: boolean
+  approved?: boolean | null
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 export class NurseShift extends Entity<NurseShiftProps> {
