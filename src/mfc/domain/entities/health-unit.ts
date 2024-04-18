@@ -4,7 +4,7 @@ import { Optional } from '@/core/types/optional'
 
 import { Shift } from './shift'
 
-interface HealthUnitProps {
+export interface HealthUnitProps {
   name: string
   latitude: number
   longitude: number
