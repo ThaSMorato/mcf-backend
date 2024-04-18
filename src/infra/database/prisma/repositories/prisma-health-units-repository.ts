@@ -14,6 +14,9 @@ export class PrismaHealthUnitRepository implements HealthUnitsRepository {
     const prismaHealthUnits = await this.prisma.healthUnit.findMany({
       skip: (page - 1) * ITENS_PER_PAGE,
       take: ITENS_PER_PAGE,
+      include: {
+        shifts: true,
+      },
     })
 
     return prismaHealthUnits.map(HealthUnitMapper.toDomain)
