@@ -21,6 +21,8 @@ model HealthUnit {
   address   String
 
   shifts Shift[]
+
+  @@map("health_units")
 }
 
 model NurseShift {
