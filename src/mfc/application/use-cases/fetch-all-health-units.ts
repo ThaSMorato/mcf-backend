@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common'
+
 import { Either, right } from '@/core/either'
 import { HealthUnit } from '@/mfc/domain/entities/health-unit'
 
@@ -12,6 +14,7 @@ type FetchAllHealthUnitsUseCaseResponse = Either<
   { healthUnits: HealthUnit[] }
 >
 
+@Injectable()
 export class FetchAllHealthUnitsUseCase {
   constructor(private healthUnitsRepository: HealthUnitsRepository) {}
 

@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common'
+
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { HealthUnitsRepository } from '@/mfc/application/repositories/health-units-repository'
 import { HealthUnit } from '@/mfc/domain/entities/health-unit'
@@ -5,7 +7,8 @@ import { HealthUnit } from '@/mfc/domain/entities/health-unit'
 import { HealthUnitMapper } from '../mappers/health-unit.mapper'
 import { PrismaService } from '../prisma.service'
 
-export class PrismaHealthUnitRepository implements HealthUnitsRepository {
+@Injectable()
+export class PrismaHealthUnitsRepository implements HealthUnitsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findMany({ page }: PaginationParams): Promise<HealthUnit[]> {

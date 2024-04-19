@@ -1,9 +1,12 @@
+import { Injectable } from '@nestjs/common'
+
 import { NurseShiftsRepository } from '@/mfc/application/repositories/nurse-shifts-repository'
 import { NurseShift } from '@/mfc/domain/entities/nurse-shift'
 
 import { NurseShiftMapper } from '../mappers/nurse-shift.mapper'
 import { PrismaService } from '../prisma.service'
 
+@Injectable()
 export class PrismaNurseShiftsRepository implements NurseShiftsRepository {
   constructor(private prisma: PrismaService) {}
 

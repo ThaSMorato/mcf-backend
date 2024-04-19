@@ -1,9 +1,12 @@
+import { Injectable } from '@nestjs/common'
+
 import { NursesRepository } from '@/mfc/application/repositories/nurses-repository'
 import { Nurse } from '@/mfc/domain/entities/nurse'
 
 import { NurseMapper } from '../mappers/nurse.mapper'
 import { PrismaService } from '../prisma.service'
 
+@Injectable()
 export class PrismaNursesRepository implements NursesRepository {
   constructor(private prisma: PrismaService) {}
 
