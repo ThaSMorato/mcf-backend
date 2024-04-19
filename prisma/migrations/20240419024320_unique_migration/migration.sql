@@ -1,12 +1,12 @@
 -- CreateTable
-CREATE TABLE "HealthUnit" (
+CREATE TABLE "health_units" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "latitude" INTEGER NOT NULL,
     "longitude" INTEGER NOT NULL,
     "address" TEXT NOT NULL,
 
-    CONSTRAINT "HealthUnit_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "health_units_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -53,4 +53,4 @@ ALTER TABLE "nurse_shifts" ADD CONSTRAINT "nurse_shifts_nurse_id_fkey" FOREIGN K
 ALTER TABLE "nurse_shifts" ADD CONSTRAINT "nurse_shifts_shift_id_fkey" FOREIGN KEY ("shift_id") REFERENCES "shifts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "shifts" ADD CONSTRAINT "shifts_health_unit_id_fkey" FOREIGN KEY ("health_unit_id") REFERENCES "HealthUnit"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "shifts" ADD CONSTRAINT "shifts_health_unit_id_fkey" FOREIGN KEY ("health_unit_id") REFERENCES "health_units"("id") ON DELETE SET NULL ON UPDATE CASCADE;
