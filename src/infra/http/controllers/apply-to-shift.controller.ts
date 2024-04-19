@@ -11,7 +11,7 @@ import { CurrentUser } from '@/infra/auth/current-user.decorator'
 import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ApplyToShiftUseCase } from '@/mfc/application/use-cases/apply-to-shift'
 
-@Controller('/shifts/:shiftId/nurse-shift')
+@Controller('/shifts/:shiftId/nurse-shifts')
 export class ApplyToShiftController {
   constructor(private applyToShiftUseCase: ApplyToShiftUseCase) {}
 
