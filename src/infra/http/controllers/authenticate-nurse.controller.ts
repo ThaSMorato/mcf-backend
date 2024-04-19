@@ -3,8 +3,8 @@ import {
   Controller,
   HttpCode,
   HttpStatus,
+  NotFoundException,
   Post,
-  UnauthorizedException,
 } from '@nestjs/common'
 import { z } from 'zod'
 
@@ -39,7 +39,7 @@ export class AuthenticateNurseController {
     if (response.isLeft()) {
       const error = response.value
 
-      throw new UnauthorizedException(error.message)
+      throw new NotFoundException(error.message)
     }
 
     const { accessToken } = response.value

@@ -13,7 +13,7 @@ export class HealthUnitPresenter {
   }: HealthUnit) {
     return {
       address,
-      id,
+      id: String(id),
       latitude,
       longitude,
       name,
