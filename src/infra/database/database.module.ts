@@ -6,13 +6,16 @@ import { NursesRepository } from '@/mfc/application/repositories/nurses-reposito
 import { ShiftsRepository } from '@/mfc/application/repositories/shifts-repository'
 
 import { PrismaService } from './prisma/prisma.service'
-import { PrismaHealthUnitRepository } from './prisma/repositories/prisma-health-units-repository'
+import { PrismaHealthUnitsRepository } from './prisma/repositories/prisma-health-units-repository'
 import { PrismaNurseShiftsRepository } from './prisma/repositories/prisma-nurse-shifts-repository'
 import { PrismaNursesRepository } from './prisma/repositories/prisma-nurses-repository'
 import { PrismaShiftsRepository } from './prisma/repositories/prisma-shifts-repository'
+import { SeederService } from './prisma/seed/seeder.service'
 
 @Module({
+  imports: [],
   providers: [
+    SeederService,
     PrismaService,
     {
       provide: ShiftsRepository,
@@ -28,14 +31,16 @@ import { PrismaShiftsRepository } from './prisma/repositories/prisma-shifts-repo
     },
     {
       provide: HealthUnitsRepository,
-      useClass: PrismaHealthUnitRepository,
+      useClass: PrismaHealthUnitsRepository,
     },
   ],
   exports: [
-    PrismaShiftsRepository,
-    PrismaNursesRepository,
-    PrismaNurseShiftsRepository,
-    PrismaHealthUnitRepository,
+    SeederService,
+    PrismaService,
+    ShiftsRepository,
+    NursesRepository,
+    NurseShiftsRepository,
+    HealthUnitsRepository,
   ],
 })
 export class DatabaseModule {}

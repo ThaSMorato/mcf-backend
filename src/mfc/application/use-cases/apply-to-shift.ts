@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common'
+
 import { Either, left, right } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 import { NurseShift } from '@/mfc/domain/entities/nurse-shift'
@@ -16,6 +18,7 @@ type ApplyToShiftUseCaseResponse = Either<
   { nurseShift: NurseShift }
 >
 
+@Injectable()
 export class ApplyToShiftUseCase {
   constructor(
     private nursesRepository: NursesRepository,
