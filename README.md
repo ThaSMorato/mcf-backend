@@ -1,73 +1,70 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# MFC - Medical Facility Coordinator - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O MFC é uma aplicação backend desenvolvida para listar postos de saúde e permitir que enfermeiros façam login e se candidatem para os turnos.
+Tecnologias usadas
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- Nest
+- bcrypt
+- Node v20.11.1
+- Passport
+- JWT
+- Zod
+- Vitest
+- Prisma
+- PostgreSQL
+- Supertest
+- Docker
 
-## Description
+## Pré-requisitos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Certifique-se de ter a versão correta do Node.js instalada (v20.11.1). Você pode usar o nvm para gerenciar suas versões do Node.js.
+Instalação
 
-## Installation
+## Clone o repositório e instale as dependências:
 
-```bash
-$ pnpm install
+```
+git clone git@github.com:ThaSMorato/mcf-backend.git
+cd [nome-do-projeto]
+npm install
 ```
 
-## Running the app
+## Variáveis de ambiente
 
-```bash
-# development
-$ pnpm run start
+O projeto utiliza as seguintes variáveis de ambiente:
 
-# watch mode
-$ pnpm run start:dev
+- `DATABASE_URL` - URL para o banco de dados PostgreSQL.
+- `JWT_PRIVATE_KEY` - Chave privada para a criação/leitura do token JWT.
+- `JWT_PUBLIC_KEY` - Chave pública para a criação do token JWT.
 
-# production mode
-$ pnpm run start:prod
-```
+As variáveis de ambiente devem ser adicionadas a um arquivo `.env` na raiz do projeto.
 
-## Test
+## Comandos
 
-```bash
-# unit tests
-$ pnpm run test
+- Ambiente de Desenvolvimento (com watch): `npm run start:dev`
+- Ambiente de Desenvolvimento: `npm run start`
+- Construir aplicativo para Produção: `npm run build`
+- Aplicativo de Produção: `npm run start:prod`
+- Testes (unitários e de integração): `npm run test`
+- Testes E2E: `npm run test:e2e`
+- Docker: `docker-compose up`
 
-# e2e tests
-$ pnpm run test:e2e
+## Funcionalidades
 
-# test coverage
-$ pnpm run test:cov
-```
+- `[GET]` /health-units?page=[number] - Recuperar até 10 unidades de saúde em uma página específica.
+- `[POST]` /sessions - Criar uma sessão para o enfermeiro.
+- `[GET]` /profile - Recuperar o perfil do usuário atualmente autenticado.
+- `[POST]` /shift/:shiftId/n urse-shifts - Criar uma relação entre um enfermeiro e um turno de saúde disponível.
 
-## Support
+## Melhorias Futuras
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Estas são algumas das possíveis melhorias que podem ser adicionadas no futuro:
+- Aceitar inscrição de enfermeiro para um turno.
+- Retornar os turnos associados a cada enfermeiro.
+- Validar se um enfermeiro já se inscreveu para um turno.
+- Adicionar filtros para os postos de saúde.
+- Implementar recurso de refresh de token.
+- Mover o token a ser adicionado a cookies em vez de retornado na resposta.
+- Implementar criação de postos de saúde.
+- Implementar criação de turno para um posto de saúde.
+- Implementar criação de perfis de enfermeiros.
+- Melhorias nas regras de negócio: um turno deve permitir mais de um enfermeiro?
