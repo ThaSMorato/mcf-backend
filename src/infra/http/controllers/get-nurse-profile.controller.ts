@@ -20,7 +20,6 @@ export class GetNurseProfileController {
   @HttpCode(HttpStatus.OK)
   async handle(@CurrentUser() user: UserPayload) {
     const { sub: nurseId } = user
-    console.log(nurseId)
     const response = await this.getNurseByIdUseCase.execute({
       nurseId,
     })
